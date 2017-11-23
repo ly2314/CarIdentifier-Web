@@ -92,7 +92,7 @@ def classify(img_path):
         return False
 
 def save_file(f):
-    with open('uploads/' + f.name, 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
-    return destination.name
+    from django.core.files.storage import FileSystemStorage
+    fs = FileSystemStorage()
+    filename = fs.save(f.name, f)
+    return fs.url(filename), fs.path(filename)

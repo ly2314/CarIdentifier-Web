@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+{% if uploaded_file_url %}
+<a href="{{ uploaded_file_url }}" data-lightbox="classified-image"><img style="max-width: 200px; max-height: 200px;" src="{{ uploaded_file_url }}" alt="image" /></a>
+{% endif %}
+
+<p>
+{% if is_car %}
+This is a car.
+{% else %}
+This is not a car.
+{% endif %}
+</p>
+
+<p>Go back to <a href='/classify'>Home</a></p>
+
+{% load static %}
+<script src="{% static "lightbox/js/lightbox-plus-jquery.min.js" %}"></script>
+<link rel="stylesheet" href="{% static "lightbox/css/lightbox.min.css" %}">
+
+{% endblock %}
