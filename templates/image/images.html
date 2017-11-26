@@ -3,13 +3,13 @@
 {% block content %}
 
 {% for item in images %}
-<div>
-    <div dock='left'>
+<div class="d-flex align-self-center p-2">
+    <div class="p-2">
         <a href="{{ item.source }}" data-lightbox="classified-image">
-            <img src="{{ item.source }}" class="img-responsive center-block"/>
+            <img src="{{ item.source }}" class="img-thumbnail rounded" style="max-width:200px;"/>
         </a>
     </div>
-    <div dock='right'>
+    <div class="p-2" style="flex-grow: 1;">
         <ul class="list-group">
             <li class="list-group-item">
                 {% if item.is_car %}
@@ -29,5 +29,9 @@
     </div>
 </div>
 {% endfor %}
+
+{% load static %}
+<script src="{% static "lightbox/js/lightbox-plus-jquery.min.js" %}"></script>
+<link rel="stylesheet" href="{% static "lightbox/css/lightbox.min.css" %}">
 
 {% endblock %}
