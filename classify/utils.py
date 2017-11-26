@@ -2,6 +2,8 @@ import numpy as np
 import cv2
 import os
 from skimage import exposure
+from django.conf import settings
+import pyimgur
 
 def toGray(images):
     # rgb2gray converts RGB values to grayscale values by forming a weighted sum of the R, G, and B components:
@@ -103,7 +105,9 @@ def save_file(f):
     from django.core.files.storage import FileSystemStorage
     fs = FileSystemStorage()
     filename = fs.save(f.name, f)
-    return fs.path(filename)
+    im = pyimgur.Imgur(settings.IMGUR_ID, settings.IMGUR_SECRET)
+    img_url = im.upload_image(fs.path(filename))
+    return img_url.link, fs.path(filename)
 
 def cleanup(path):
     if os.path.isfile(path):
