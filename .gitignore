@@ -1,8 +1,6 @@
 *.h5
-*.jpg
 *.pyc
 .DS_Store
-images/
 uploads/
 .vscode/
 __pycache__/
