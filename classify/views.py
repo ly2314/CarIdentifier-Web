@@ -15,7 +15,6 @@ def classify(request):
             img_path = save_file(request.FILES['image'])
             im = pyimgur.Imgur(settings.IMGUR_ID, settings.IMGUR_SECRET)
             img_url = im.upload_image(img_path)
-            img_url = ""
             from .utils import classify
             if classify(img_path) == True:
                 return render(request, 'classify/result.html', {'is_car': True, 'uploaded_file_url': img_url })
