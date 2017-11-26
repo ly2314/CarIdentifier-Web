@@ -6,8 +6,10 @@
 <div class="form-group">
   <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
-  <input type="file" name="image">
-  <button type="submit">Upload</button>
+  <label for="image">Upload a image!</label>
+  <input type="file" class="form-control-file" id="image" name="image" aria-describedby="fileHelp">
+  <small id="fileHelp" class="form-text text-muted">Please select a image to classify if it contains a car or not.</small>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </div>
   
