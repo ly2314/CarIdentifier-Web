@@ -3,9 +3,12 @@
 {% load static %}
 
 {% block content %}
+<div class="form-group">
   <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="file" name="image">
-    <button type="submit">Upload</button>
-  </form>
+  {% csrf_token %}
+  <input type="file" name="image">
+  <button type="submit">Upload</button>
+</form>
+</div>
+  
 {% endblock %}
