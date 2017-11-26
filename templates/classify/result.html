@@ -4,7 +4,7 @@
 {% block content %}
 
 
-{% if model.source %}
+{% if image.source %}
 <div>
     <a href="{{ uploaded_file_url }}" data-lightbox="classified-image">
         <img src="{{ uploaded_file_url }}" alt="image" class="img-responsive center-block"/>
@@ -13,7 +13,7 @@
 {% endif %}
 
 <p class="text-center">
-{% if model.is_car %}
+{% if image.is_car %}
 This is a car.
 {% else %}
 This is not a car.
