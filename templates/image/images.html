@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for item in images %}
+<div>
+    <div dock='left'>
+        <a href="{{ item.source }}" data-lightbox="classified-image">
+            <img src="{{ item.source }}" class="img-responsive center-block"/>
+        </a>
+    </div>
+    <div dock='right'>
+        <ul class="list-group">
+            <li class="list-group-item">
+                {% if item.is_car %}
+                Prediction: This is a car.
+                {% else %}
+                Prediction: This is not a car.
+                {% endif %}
+            </li>
+            <li class="list-group-item">
+                {% if item.correct %}
+                Feedback: Prediction is correct.
+                {% else %}
+                Feedback: Prediction is wrong.
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
