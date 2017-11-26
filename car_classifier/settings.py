@@ -25,7 +25,10 @@ SECRET_KEY = 'yx-hs4&6d2*%ppw#uoq+co-4q8uox%%clz6c(@-r9#ph$^xv*!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['notcar-demo.ly2314.cc']
+ALLOWED_HOSTS = [
+    'notcar-demo.ly2314.cc',
+    '127.0.0.1'
+    ]
 
 
 # Application definition

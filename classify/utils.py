@@ -56,13 +56,13 @@ def load_img(img_path):
     x = []
     if not os.path.exists(img_path):
         print("Image not found!")
-        exit(1)
+        return None
     
     img = loadBlurImg(img_path, (64, 64))
 
     if img is None:
         print("Invalid image")
-        exit(1)
+        return None
     
     x.append(img)
     y = np.array(x)
@@ -71,9 +71,13 @@ def load_img(img_path):
 def classify(img_path):
 
     if not os.path.exists(os.getcwd() + '/car.h5'):
-        exit(1)
+        return None
 
     img = load_img(img_path)
+
+    if img is None:
+        return None
+
     img = preprocessData(img)
 
     import tensorflow as tf
