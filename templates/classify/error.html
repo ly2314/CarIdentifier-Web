@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Error Occured!</h1>
+{% if error_message %}
+<h2>Detailed Message</h2>
+<pre>{{ error_message }}</pre>
+{% endif %}
+
+{% endblock %}

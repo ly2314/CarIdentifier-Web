@@ -4,16 +4,24 @@
 {% block content %}
 
 
-{% if uploaded_file_url %}
-<a href="{{ uploaded_file_url }}" data-lightbox="classified-image"><img src="{{ uploaded_file_url }}" alt="image" class="img-responsive center-block"/></a>
+{% if model.source %}
+<div>
+    <a href="{{ uploaded_file_url }}" data-lightbox="classified-image">
+        <img src="{{ uploaded_file_url }}" alt="image" class="img-responsive center-block"/>
+    </a>
+</div>
 {% endif %}
 
 <p class="text-center">
-{% if is_car %}
+{% if model.is_car %}
 This is a car.
 {% else %}
 This is not a car.
 {% endif %}
+</p>
+
+<p class="text-center">
+    Am I right? <a href="/feedback/right">
 </p>
 
 <p class="text-center"><a href='/'>Home</a></p>
