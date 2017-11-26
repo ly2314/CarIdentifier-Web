@@ -5,11 +5,9 @@
 
 
 {% if image.source %}
-<div>
-    <a href="{{ image.source }}" data-lightbox="classified-image">
-        <img src="{{ image.source }}" class="img-responsive center-block"/>
-    </a>
-</div>
+<a href="{{ image.source }}" data-lightbox="classified-image">
+    <img src="{{ image.source }}" class="img-responsive center-block"/>
+</a>
 {% endif %}
 
 <p class="text-center">
@@ -21,7 +19,23 @@ This is not a car.
 </p>
 
 <p class="text-center">
-    Am I right? <a href="/feedback/right">
+    Am I correct?
+    <div class="form-group">
+        <form method="post" action="/feedback" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="radio">
+            <label>
+                <input type="radio" name="correct" value="true">Yes
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="correct" value="false">No
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
 </p>
 
 <p class="text-center"><a href='/'>Home</a></p>
