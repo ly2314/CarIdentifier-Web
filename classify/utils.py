@@ -44,6 +44,7 @@ def rotateImage(img, angle):
 def loadBlurImg(path, imgSize):
     img = cv2.imread(path)
     if img is None:
+        print("Invalid Image")
         return None
     #angle = np.random.randint(-180, 180)
     #img = rotateImage(img, angle)
@@ -61,7 +62,6 @@ def load_img(img_path):
     img = loadBlurImg(img_path, (64, 64))
 
     if img is None:
-        print("Invalid image")
         return None
     
     x.append(img)
@@ -71,8 +71,10 @@ def load_img(img_path):
 def classify(img_path):
 
     if not os.path.exists(os.getcwd() + '/car.h5'):
+        print("Cannot find pre-trained model")
         return None
 
+    print(img_path)
     img = load_img(img_path)
 
     if img is None:
@@ -89,6 +91,8 @@ def classify(img_path):
     model = load_model(os.getcwd() + '/car.h5')
 
     predictions = model.predict_classes(img)
+
+    cleanup(img_path)
     
     if predictions[0] == 0:
         return True
@@ -99,4 +103,9 @@ def save_file(f):
     from django.core.files.storage import FileSystemStorage
     fs = FileSystemStorage()
     filename = fs.save(f.name, f)
-    return fs.url(filename), fs.path(filename)
+    return fs.path(filename)
+
+def cleanup(path):
+    if os.path.isfile(path):
+        print("is file")
+        os.remove(path)
