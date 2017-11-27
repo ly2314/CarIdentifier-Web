@@ -17,10 +17,7 @@ def classify(request):
                 return render(request, 'classify/error.html', {'error_message': "error occured" })
             model = Image(is_car=is_car, source=img_url, correct=True)
             model.save()
-            if is_car == True:
-                return render(request, 'classify/result.html', {'image': model })
-            else:
-                return render(request, 'classify/result.html', {'image': model })
+            return render(request, 'classify/result.html', {'image': model })
     else:
         form = UploadFileForm()
     return render(request, 'classify/upload.html', {'form': form})
