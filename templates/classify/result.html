@@ -3,43 +3,42 @@
 
 {% block content %}
 
-
-{% if image.source %}
-<a href="{{ image.source }}" data-lightbox="classified-image">
-    <img src="{{ image.source }}" class="img-responsive center-block"/>
-</a>
-{% endif %}
-
-<p class="text-center">
-{% if image.is_car %}
-This is a car.
-{% else %}
-This is not a car.
-{% endif %}
-</p>
-
-<p class="text-center">
-    Am I correct?
-    <div class="form-group">
-        <form method="post" action="/feedback/" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="radio">
-            <label>
-                <input type="radio" name="correct" value="true">Yes
-            </label>
-        </div>
-        <div class="radio">
-            <label>
-                <input type="radio" name="correct" value="false">No
-            </label>
-        </div>
-        <input type="hidden" name="id" value="{{ image.pk }}"/>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+<div class="d-flex flex-row">
+    {% if image.source %}
+    <div class="p-2" style="max-width: 75%;">
+        <a href="{{ image.source }}" data-lightbox="classified-image">
+            <img src="{{ image.source }}" class="img-fluid"/>
+        </a>
     </div>
-</p>
-
-<p class="text-center"><a href='/'>Home</a></p>
+    {% endif %}
+    <div class="p-2">
+        <div class="form-group">
+            <label>
+            {% if image.is_car %}
+            This is a car.
+            {% else %}
+            This is not a car.
+            {% endif %}
+            </label>
+            <form method="post" action="/feedback/" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label>Am I correct?</label>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="correct" value="true"> Yes
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="correct" value="false"> No
+                </label>
+            </div>
+            <input type="hidden" name="id" value="{{ image.pk }}"/>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 {% load static %}
 <script src="{% static "lightbox/js/lightbox-plus-jquery.min.js" %}"></script>
